@@ -19,6 +19,6 @@ The server.js file creates a database of name `ContactList` and then a collectio
 The hire date is displayed in YYYY-MM-DD format and is in past. It also adds two random quotes per user.
 
 ## Screenshots
-!(Resources/main.png)
-!(Resources/add.png)
-!(Resources/edit.png)
+![Main](/P2/Resources/main.png)
+![Add](/P2/Resources/add.png)
+![Edit](/P2/Resources/edit.png)
