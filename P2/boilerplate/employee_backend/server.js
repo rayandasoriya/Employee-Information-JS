@@ -12,36 +12,35 @@ const database = 'ContactList'
 MongoClient.connect(MongoUrl, { useNewUrlParser: true }, (err, client) => {
     assert.equal(err, null, 'database connection failed')
     const db = client.db(database)
-    app.post('/addcontact', (req, res) => {
-        let newcontact = req.body
-        db.collection('contactlist').insertOne(newcontact, (err, data) => {
-            if (err) res.send('cant add contact')
-            else res.send('new contact added')
+    app.post('/addemployee', (req, res) => {
+        let newemployee = req.body
+        db.collection('employeelist').insertOne(newemployee, (err, data) => {
+            if (err) res.send('cant add employee')
+            else res.send('new employee added')
         })
     })
 
-    app.get('/contactlist', (req, res) => {
-        db.collection('contactlist').find().toArray((err, data) => {
+    app.get('/employeelist', (req, res) => {
+        db.collection('employeelist').find().toArray((err, data) => {
             if (err) res.send('Error in fetching employee',e)
             else res.send(data)
         })
     })
 
-    app.delete('/removecontact/:id', (req, res) => {
+    app.delete('/removeemployee/:id', (req, res) => {
         let romovedID = ObjectID(req.params.id)
-        db.collection('contactlist').findOneAndDelete({ _id: romovedID }, (err, data) => {
+        db.collection('employeelist').findOneAndDelete({ _id: romovedID }, (err, data) => {
             if (err) res.send('Employee not deleted')
             else res.send('Employee Deleted')
         })
     })
 
-
-    app.put("/modifycontact/:id", (req, res) => {
-        let modifiedcontact = req.body
-        let modifiedcontactid = ObjectID(req.params.id)
-        db.collection('contactlist').update({ _id: modifiedcontactid }, modifiedcontact, (err, data) => {
-            if (err) res.send('contact cant be modified')
-            else res.send('contact modified')
+    app.put("/modifyemployee/:id", (req, res) => {
+        let modifiedemployee = req.body
+        let modifiedemployeeid = ObjectID(req.params.id)
+        db.collection('employeelist').update({ _id: modifiedemployeeid }, modifiedemployee, (err, data) => {
+            if (err) res.send('Employee cant be modified')
+            else res.send('Employee modified')
         })
     })
 })

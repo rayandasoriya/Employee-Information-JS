@@ -1,12 +1,10 @@
 {
-  "name": "contactlist_client",
+  "name": "employeelist_client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3700",
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
-    "fs": "0.0.1-security",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",

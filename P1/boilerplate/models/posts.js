@@ -1,62 +1,62 @@
-let posts = require('../data/input.json.js')
+let employees = require('../data/input.json')
 const filename = './data/input.json'
-const helper = require('./helper.js.js')
+const helper = require('./helper.js')
 const fs = require('fs');
 
 
-function getPosts() {
+function getEmployees() {
     return new Promise((resolve, reject) => {
-        if (posts.length === 0) {
+        if (employees.length === 0) {
             reject({
-                message: 'no posts available',
+                message: 'No employees available',
                 status: 202
             })
         }
-        resolve(posts)
+        resolve(employees)
     })
 }
 
-function getPost(id) {
+function getEmployee(id) {
     return new Promise((resolve, reject) => {
-        helper.mustBeInArray(posts, id)
-        .then(post => resolve(post))
+        helper.mustBeInArray(employees, id)
+        .then(employee => resolve(employee))
         .catch(err => reject(err))
     })
 }
 
-function insertPost(newPost, link1,link2) {
+function insertEmployee(newEmployee, link1,link2) {
     return new Promise((resolve, reject) => {
-        const id = { id: helper.getId(posts) }
+        const id = { id: helper.getId(employees) }
         var new_quotes = {"quote1": link1, "quote2": link2}   
         //console.log(quote1)
-        newPost = { ...id, ...newPost, ...new_quotes }
-        posts.push(newPost)
-        helper.writeJSONFile(filename, posts)
-        resolve(newPost)
+        newEmployee = { ...id, ...newEmployee, ...new_quotes }
+        employees.push(newEmployee)
+        helper.writeJSONFile(filename, employees)
+        resolve(newEmployee)
     })
 }
 
-function updatePost(id, newPost) {
+function updateEmployee(id, newEmployee) {
     return new Promise((resolve, reject) => {
-        helper.mustBeInArray(posts, id)
-        .then(post => {
-            const index = posts.findIndex(p => p.id == post.id)
-            id = { id: post.id }        
-            quotes = {"quote1": post.quote1, "quote2": post.quote2}
-            posts[index] = { ...id, ...newPost, ...quotes }
-            helper.writeJSONFile(filename, posts)
-            resolve(posts[index])
+        helper.mustBeInArray(employees, id)
+        .then(employee => {
+            const index = employees.findIndex(p => p.id == employee.id)
+            id = { id: employee.id }        
+            quotes = {"quote1": employee.quote1, "quote2": employee.quote2}
+            employees[index] = { ...id, ...newEmployee, ...quotes }
+            helper.writeJSONFile(filename, employees)
+            resolve(employees[index])
         })
         .catch(err => reject(err))
     })
 }
 
-function deletePost(id) {
+function deleteEmployee(id) {
     return new Promise((resolve, reject) => {
-        helper.mustBeInArray(posts, id)
+        helper.mustBeInArray(employees, id)
         .then(() => {             
-            posts = posts.filter(p => p.id != id)
-            helper.writeJSONFile(filename, posts)
+            employees = employees.filter(p => p.id != id)
+            helper.writeJSONFile(filename, employees)
             resolve()
         })
         .catch(err => reject(err))
@@ -64,9 +64,9 @@ function deletePost(id) {
 }
 
 module.exports = {
-    insertPost,
-    getPosts,
-    getPost, 
-    updatePost,
-    deletePost
+    insertEmployee,
+    getEmployees,
+    getEmployee, 
+    updateEmployee,
+    deleteEmployee
 }

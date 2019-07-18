@@ -29,7 +29,7 @@ class Addemployee extends Component {
     }
 
     else {      
-        axios.post('/addcontact', { ...this.state })
+        axios.post('/addemployee', { ...this.state })
         .then((res) => alert('Emloyee Added'))
         .catch(err => alert("cant send data"))
   }
@@ -37,7 +37,7 @@ class Addemployee extends Component {
 
   render() {
     return (
-      <div className="contactadd"   >
+      <div className="employeeadd">
         <h2 > Add an Employee </h2>
         <form  >
           <div className="form-group">

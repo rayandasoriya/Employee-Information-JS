@@ -13,7 +13,7 @@ class Modifyemployee extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  updatecontact = (e) => {
+  updateEmployee = (e) => {
     const date1 = new Date();
     const date2 = new Date(this.state.hireDate);
     if (date2.getTime() > date1.getTime()) {
@@ -27,8 +27,8 @@ class Modifyemployee extends Component {
     }
 
     else {
-      axios.put(`/modifycontact/${this.props.edit._id}`, { ...this.state })
-        .then((res) => console.log('Contact Modified'))
+      axios.put(`/modifyemployee/${this.props.edit._id}`, { ...this.state })
+        .then((res) => console.log('Employee Modified'))
         .catch(err => console.log(err))
     }
   }
@@ -37,8 +37,8 @@ class Modifyemployee extends Component {
   render() {
     return (
 
-      <div className="contactadd"   >
-        <h2 > Update Contact </h2>
+      <div className="employeeadd"   >
+        <h2 > Update Employee </h2>
         <form  >
           <div className="form-group">
             <label>First Name</label>
@@ -64,7 +64,7 @@ class Modifyemployee extends Component {
             </select>
           </div>
 
-          <Link to='/api/employees'> <button type="submit" className="btn btn-primary" onClick={this.updatecontact} > Edit </button> </Link>
+          <Link to='/api/employees'> <button type="submit" className="btn btn-primary" onClick={this.updateEmployee} > Edit </button> </Link>
         </form>
       </div>
     );

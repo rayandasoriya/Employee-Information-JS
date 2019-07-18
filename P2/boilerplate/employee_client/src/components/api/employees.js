@@ -2,48 +2,51 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
-class Contactlist extends Component {
+class EmployeeList extends Component {
   constructor(props) {
     super(props)
-    this.state = { contactlist: [] }
+    this.state = { employeelist: [] }
   }
 
   componentDidMount() {
-    axios.get('/contactlist')
-      .then(res => this.setState({ contactlist: res.data }))
+    axios.get('/employeelist')
+      .then(res => this.setState({ employeelist: res.data }))
       .catch(err => alert("Employee cant be added"))
   }
 
-  removecontact = (id) => {
-    axios.delete(`/removecontact/${id}`)
+  removeEmployee = (id) => {
+    axios.delete(`/removeemployee/${id}`)
       .then(() => console.log("Employee removed"))
       .catch(err => alert("Employee cant be removed"))
   }
 
   componentDidUpdate() {
-    axios.get('/contactlist')
-      .then(res => this.setState({ contactlist: res.data }))
+    axios.get('/employeelist')
+      .then(res => this.setState({ employeelist: res.data }))
       .catch(err => alert("Employee cant be added"))
   }
 
   onclickedit = (content) => {
     this.props.transfer({ _id: content._id, fname: content.fname, lname: content.lname, hireDate: content.hireDate, role: content.role, quote1: content.quote1, quote2: content.quote2 })
   }
-
+  onclickview = (content) => {
+    this.props.transfer({ _id: content._id, fname: content.fname, lname: content.lname, hireDate: content.hireDate, role: content.role, quote1: content.quote1, quote2: content.quote2 })
+  }
   render() {
     return (
-      <div className="contactlist">
+      <div className="employeelist">
 
-        {this.state.contactlist.map(content => <div className="card" style={{ width: "420px" }}>
+        {this.state.employeelist.map(content => <div className="card" style={{ width: "420px" }}>
           <div className="card-body">
-            <p className="card-text">Name : {content.fname} {content.lname} </p>
-            <p className="card-text">Hire Date : {content.hireDate} </p>
-            <p className="card-text">Role : {content.role} </p>
-            <p className="card-text">Quote 1: {content.quote1} </p>
-            <p className="card-text">Quote 2 : {content.quote2} </p>
+            <p className="card-text"><b>Name: </b>{content.fname} {content.lname} </p>
+            <p className="card-text"><b>Hire Date: </b>{content.hireDate} </p>
+            <p className="card-text"><b>Role: </b>{content.role} </p>
+            <p className="card-text"><b>Quote 1: </b>{content.quote1} </p>
+            <p className="card-text"><b>Quote 2: </b>{content.quote2} </p>
             <div class="buttoncard">
-              <button type="button" class="btn btn-danger" onClick={() => this.removecontact(content._id)}>Delete</button>
-              <Link to="/api/editcontact" ><button type="button" class="btn btn-warning" onClick={() => this.onclickedit(content)}> Edit</button> </Link>
+              <Link to="/api/displayemployee" ><button type="button" class="btn btn-primary" onClick={() => this.onclickview(content)}>View</button> </Link>
+              <Link to="/api/editemployee" ><button type="button" class="btn btn-warning" onClick={() => this.onclickedit(content)}>Edit</button> </Link>
+              <button type="button" class="btn btn-danger" onClick={() => this.removeEmployee(content._id)}>Delete</button>
             </div>
           </div>
         </div>)}
@@ -52,4 +55,4 @@ class Contactlist extends Component {
   }
 }
 
-export default Contactlist;
+export default EmployeeList;

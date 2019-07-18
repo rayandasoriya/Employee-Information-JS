@@ -35,7 +35,7 @@ function mustBeInteger(req, res, next) {
     }
 }
 
-function checkFieldsPost(req, res, next) {
+function checkFields(req, res, next) {
     const { fname, lname, hireDate, role } = req.body
     const accept_role = ["CEO", "MANAGER", "VP", "LACKEY"]
     var d1 = new Date();
@@ -52,8 +52,6 @@ function checkFieldsPost(req, res, next) {
         console.log("Error in role")
         res.status(400).json({ message: 'Role must be ceo/manager/cp/lackey' })
     }
-
-
     if (fname && lname && hireDate && role) {
         next()
     } else {
@@ -66,5 +64,5 @@ module.exports = {
     mustBeInArray,
     writeJSONFile,
     mustBeInteger,
-    checkFieldsPost
+    checkFields
 }
