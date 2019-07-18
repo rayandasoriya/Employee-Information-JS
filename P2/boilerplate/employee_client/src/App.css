@@ -1,0 +1,52 @@
+
+.contactnav {
+  text-align: center;
+}
+
+.contactnav h1 {
+  color: blue;
+  margin-top: 30px;
+  font-family:   'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.buttonform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonform button{
+ margin : 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: outset blue;
+  width :550px;
+  padding: 10px;
+  margin:auto;
+}
+
+form label {
+ text-align: left;
+ width :500px;
+}
+.form-control {
+  width :500px;
+
+}
+.buttoncard button{
+width : 80px;
+margin : 20px;
+}
+
+.card {
+  margin : 20px;
+}
+
+.contactlist {
+flex-wrap: wrap;
+  display : flex;
+  justify-content: center;
+}
